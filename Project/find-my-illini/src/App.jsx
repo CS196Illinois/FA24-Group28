@@ -1,35 +1,89 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+
+import lowerLevel from './assets/lower level.png'
+import floor1 from './assets/floor 1.png'
+import floor2 from './assets/floor 2.png'
+import floor3 from './assets/floor 3.png'
+import floor4 from './assets/floor 4.png'
+
 import viteLogo from '/vite.svg'
 import './App.css'
+
+const MenuIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M4 12H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 6H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 18H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+);
+
+const MenuButton = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  return (
+    <div>
+      <button onClick={toggleMenu} aria-label="Toggle menu">
+        <MenuIcon />
+      </button>
+      {isOpen && (
+        <nav>
+          <ul>
+            <li><a href="#link1">Link 1</a></li>
+            <li><a href="#link2">Link 2</a></li>
+            <li><a href="#link3">Link 3</a></li>
+          </ul>
+        </nav>
+      )}
+    </div>
+  );
+};
+
+export default MenuButton;
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>FindMyIllini</h1>
+      <img src={lowerLevel} className="">
+      <img src={floor1}>
+      <img src={floor2}>
+      <img src={floor3}>
+      <img src={floor4}>
     </>
   )
 }
 
+function DropdownMenu() {
+  // State to manage the visibility of the dropdown
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Function to toggle the dropdown
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className="dropdown">
+      {/* Button to toggle the dropdown */}
+      <button onClick={toggleDropdown} className="dropdown-toggle">
+        {isOpen ? 'Close Menu' : 'Open Menu'}
+      </button>
+
+      {/* Dropdown menu */}
+      {isOpen && (
+        <ul className="dropdown-menu">
+          <li>Option 1</li>
+          <li>Option 2</li>
+          <li>Option 3</li>
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export default DropdownMenu;
 export default App
