@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import lowerLevel from './assets/lower level.png'
 import floor1 from './assets/floor 1.png'
@@ -18,12 +18,27 @@ const MenuIcon = () => (
 
 const MenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null)
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div>
-      <button onClick={toggleMenu} aria-label="Toggle menu">
+    <div ref={menuRef} className = "menu-button">
+      <button onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isOpen}>
         <MenuIcon />
       </button>
       {isOpen && (
@@ -40,11 +55,11 @@ const MenuButton = () => {
 };
 
 //export default MenuButton;
-
 function App() {  
   return (
     <div>
       <h1>FindMyIllini</h1>
+      <DropdownMenu />
       <div className="floorPlans">
         <img src={lowerLevel} className="floorImg"/>
         <img src={floor1} className="floorImg"/>
@@ -55,6 +70,8 @@ function App() {
     </div>
   );
 }
+  
+
 
 function DropdownMenu() {
   // State to manage the visibility of the dropdown
@@ -69,20 +86,22 @@ function DropdownMenu() {
     <div className="dropdown">
       {/* Button to toggle the dropdown */}
       <button onClick={toggleDropdown} className="dropdown-toggle">
-        {isOpen ? 'Close Menu' : 'Open Menu'}
+        {isOpen ? 'Select a floor of Grainger Library:' : 'Select a floor of Grainger Library:'}
       </button>
 
       {/* Dropdown menu */}
       {isOpen && (
         <ul className="dropdown-menu">
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
+          <li>Basement</li>
+          <li>Floor 1</li>
+          <li>Floor 2</li>
+          <li>Floor 3</li>
+          <li>Floor 4</li>
         </ul>
       )}
     </div>
   );
 }
 
-//export default DropdownMenu;
+export { MenuButton, DropdownMenu };
 export default App;
