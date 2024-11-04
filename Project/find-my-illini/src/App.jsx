@@ -43,9 +43,9 @@ const MenuButton = () => {
         <MenuIcon />
       </button>
       {isOpen && (
-        <nav>
+        <nav className={`slider-menu ${isOpen ? 'open' : ''}`}>
           <ul>
-            <li><a href="#link1">Link 1</a></li>
+            <li><a href="#link1">Saved</a></li>
             <li><a href="#link2">Link 2</a></li>
             <li><a href="#link3">Link 3</a></li>
           </ul>
@@ -55,14 +55,15 @@ const MenuButton = () => {
   );
 };
 
-//export default MenuButton;
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+    
       <h1>FindMyIllini</h1>
+      <MenuButton />
       <DropdownMenu />
       <img src={lowerLevel} className="" />
       <img src={floor1} />
@@ -105,4 +106,4 @@ function DropdownMenu() {
   );
 }
 export { MenuButton, DropdownMenu };
-export default App
+export default App;

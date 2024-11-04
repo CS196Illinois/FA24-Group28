@@ -39,6 +39,67 @@ h1 {
   line-height: normal;
 }
 
+.menu-button {
+  position: fixed;
+  top: 20px; 
+  left: 20px; 
+  z-index: 1001;
+}
+
+.menu-button button {
+  background-color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+svg {
+  width: 30px;
+  height: 50px;
+}
+
+.slider-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; 
+  width: 250px;
+  height: 100vh; 
+  background: #FAFBFB;
+  color: rgb(210, 196, 196);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px; 
+}
+
+.slider-menu.open {
+  transform: translateX(250px); 
+}
+
+.slider-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slider-menu li {
+  padding: 15px;
+}
+
+.slider-menu a {
+  color: var(--Black, #151515);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.slider-menu a:hover {
+  color: #bd6710;
+}
+
+
 
 
 
