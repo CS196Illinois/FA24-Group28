@@ -30,9 +30,11 @@ const MenuButton = () => {
       {isOpen && (
         <nav>
           <ul>
-            <li><a href="#link1">Link 1</a></li>
-            <li><a href="#link2">Link 2</a></li>
-            <li><a href="#link3">Link 3</a></li>
+            <li><a href="#link1">Basement</a></li>
+            <li><a href="#link2">Floor 1</a></li>
+            <li><a href="#link3">Floor 2</a></li>
+            <li><a href="#link4">Floor 3</a></li>
+            <li><a href="#link5">Floor 4</a></li>
           </ul>
         </nav>
       )}
@@ -40,22 +42,25 @@ const MenuButton = () => {
   );
 };
 
-export default MenuButton;
+//export default MenuButton;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
       <h1>FindMyIllini</h1>
-      <img src={lowerLevel} className="">
-      <img src={floor1}>
-      <img src={floor2}>
-      <img src={floor3}>
-      <img src={floor4}>
+      <DropdownMenu />
+      <img src={lowerLevel} className="" />
+      <img src={floor1} />
+      <img src={floor2} />
+      <img src={floor3} />
+      <img src={floor4} />
     </>
   )
 }
+  
+
 
 function DropdownMenu() {
   // State to manage the visibility of the dropdown
@@ -70,20 +75,21 @@ function DropdownMenu() {
     <div className="dropdown">
       {/* Button to toggle the dropdown */}
       <button onClick={toggleDropdown} className="dropdown-toggle">
-        {isOpen ? 'Close Menu' : 'Open Menu'}
+        {isOpen ? 'Select a floor of Grainger Library:' : 'Select a floor of Grainger Library:'}
       </button>
 
       {/* Dropdown menu */}
       {isOpen && (
         <ul className="dropdown-menu">
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
+          <li>Basement</li>
+          <li>Floor 1</li>
+          <li>Floor 2</li>
+          <li>Floor 3</li>
+          <li>Floor 4</li>
         </ul>
       )}
     </div>
   );
 }
-
-export default DropdownMenu;
+export { MenuButton, DropdownMenu };
 export default App
