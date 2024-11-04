@@ -6,7 +6,6 @@ import floor2 from './assets/floor 2.png'
 import floor3 from './assets/floor 3.png'
 import floor4 from './assets/floor 4.png'
 
-import viteLogo from '/vite.svg'
 import './App.css'
 
 const MenuIcon = () => (
@@ -40,21 +39,21 @@ const MenuButton = () => {
   );
 };
 
-export default MenuButton;
+//export default MenuButton;
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function App() {  
   return (
-    <>
+    <div>
       <h1>FindMyIllini</h1>
-      <img src={lowerLevel} className="">
-      <img src={floor1}>
-      <img src={floor2}>
-      <img src={floor3}>
-      <img src={floor4}>
-    </>
-  )
+      <div className="floorPlans">
+        <img src={lowerLevel} className="floorImg"/>
+        <img src={floor1} className="floorImg"/>
+        <img src={floor2} className="floorImg"/>
+        <img src={floor3} className="floorImg"/>
+        <img src={floor4} className="floorImg"/>
+      </div>
+    </div>
+  );
 }
 
 function DropdownMenu() {
@@ -85,5 +84,5 @@ function DropdownMenu() {
   );
 }
 
-export default DropdownMenu;
-export default App
+//export default DropdownMenu;
+export default App;
