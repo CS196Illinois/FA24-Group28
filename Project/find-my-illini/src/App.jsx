@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import lowerLevel from './assets/lower level.png'
 import floor1 from './assets/floor 1.png'
@@ -19,22 +19,35 @@ const MenuIcon = () => (
 
 const MenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null)
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div>
-      <button onClick={toggleMenu} aria-label="Toggle menu">
+    <div ref={menuRef} className = "menu-button">
+      <button onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isOpen}>
         <MenuIcon />
       </button>
       {isOpen && (
         <nav>
           <ul>
-            <li><a href="#link1">Basement</a></li>
-            <li><a href="#link2">Floor 1</a></li>
-            <li><a href="#link3">Floor 2</a></li>
-            <li><a href="#link4">Floor 3</a></li>
-            <li><a href="#link5">Floor 4</a></li>
+            <li><a href="#link1">Link 1</a></li>
+            <li><a href="#link2">Link 2</a></li>
+            <li><a href="#link3">Link 3</a></li>
           </ul>
         </nav>
       )}
