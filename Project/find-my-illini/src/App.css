@@ -84,7 +84,7 @@ button:focus-visible {
 .dropdown-menu {
   display: block;
   position: absolute;
-  min-width: 160px;
+  min-width: 200px;
   z-index: 1000;
   border-radius: 28px;
   border: 2px solid #3F87C6;
