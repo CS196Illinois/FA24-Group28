@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #494eac;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #5131ac;
 }
 
 body {
@@ -53,9 +53,16 @@ h1 {
   font-size: 30px;
 }
 
-svg {
+.menub {
   width: 30px;
   height: 50px;
+}
+
+li:first-child a svg {
+  margin-top: 20px;
+  margin-left: -5px;
+  height: 20px;
+  width: 20px;
 }
 
 .slider-menu {
@@ -87,16 +94,15 @@ svg {
 }
 
 .slider-menu a {
-  color: var(--Black, #151515);
-  font-family: Inter;
+  color: var(--Black, #371800);
   font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: normal;
 }
 
 .slider-menu a:hover {
-  color: #bd6710;
+  color: #422da9;
 }
 
 

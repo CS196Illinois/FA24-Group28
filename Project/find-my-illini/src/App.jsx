@@ -9,7 +9,7 @@ import floor4 from './assets/floor 4.png'
 import './App.css'
 
 const MenuIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <svg class='menub' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M4 12H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M4 6H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M4 18H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -44,9 +44,11 @@ const MenuButton = () => {
       {isOpen && (
         <nav className={`slider-menu ${isOpen ? 'open' : ''}`}>
           <ul>
-            <li><a href="#link1">Saved</a></li>
-            <li><a href="#link2">Link 2</a></li>
-            <li><a href="#link3">Link 3</a></li>
+            <li><a href="#link1"><svg class="bookmark" xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 20 20" fill="none">
+  <path d="M15.8334 17.5L10 14.1667L4.16669 17.5V4.16667C4.16669 3.72464 4.34228 3.30072 4.65484 2.98816C4.9674 2.67559 5.39133 2.5 5.83335 2.5H14.1667C14.6087 2.5 15.0326 2.67559 15.3452 2.98816C15.6578 3.30072 15.8334 3.72464 15.8334 4.16667V17.5Z" stroke="#3F87C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> Saved</a></li>
+            <li><a href="#link2">My Account</a></li>
+            <li><a href="#link3">Settings</a></li>
           </ul>
         </nav>
       )}
