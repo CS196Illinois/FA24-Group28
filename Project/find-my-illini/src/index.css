@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,44 +15,99 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #494eac;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #5131ac;
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: top;
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  color: #3F87C6; 
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.menu-button {
+  position: fixed;
+  top: 20px; 
+  left: 20px; 
+  z-index: 1001;
+}
+
+.menu-button button {
+  background-color: white;
+  padding: 10px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-size: 30px;
 }
-button:hover {
-  border-color: #646cff;
+
+.menub {
+  width: 30px;
+  height: 50px;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+li:first-child a svg {
+  margin-top: 20px;
+  margin-left: -5px;
+  height: 20px;
+  width: 20px;
 }
+
+.slider-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; 
+  width: 250px;
+  height: 100vh; 
+  background: #FAFBFB;
+  color: rgb(210, 196, 196);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px; 
+}
+
+.slider-menu.open {
+  transform: translateX(250px); 
+}
+
+.slider-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slider-menu li {
+  padding: 15px;
+}
+
+.slider-menu a {
+  color: var(--Black, #371800);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.slider-menu a:hover {
+  color: #422da9;
+}
+
+
+
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -65,4 +120,5 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
 }
