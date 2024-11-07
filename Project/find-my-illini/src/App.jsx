@@ -60,7 +60,11 @@ const MenuButton = () => {
 function App() {  
   return (
     <div>
-      <h1>FindMyIllini</h1>
+      <h1>
+      Find
+        <font color="#F38F24">My</font>
+        Illini
+    </h1>
       <MenuButton />
       <DropdownMenu />
       <div className="floorPlans">
