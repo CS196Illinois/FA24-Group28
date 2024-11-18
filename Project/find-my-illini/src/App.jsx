@@ -1,26 +1,28 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom';
 
-import lowerLevel from './assets/lower level.png'
-import floor1 from './assets/floor 1.png'
-import floor2 from './assets/floor 2.png'
-import floor3 from './assets/floor 3.png'
-import floor4 from './assets/floor 4.png'
+import lowerLevel from './assets/lower level.png';
+import floor1 from './assets/floor 1.png';
+import floor2 from './assets/floor 2.png';
+import floor3 from './assets/floor 3.png';
+import floor4 from './assets/floor 4.png';
 
-import './App.css'
+import './App.css';
 
 const MenuIcon = () => (
-  <svg class='menub' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-  <path d="M4 12H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M4 6H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M4 18H20" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+  <svg className="menub" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M4 12H20" stroke="#151515" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M4 6H20" stroke="#151515" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M4 18H20" stroke="#151515" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
 );
 
 const MenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef(null)
+  const menuRef = useRef(null);
+
   const toggleMenu = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   const handleClickOutside = (event) => {
@@ -37,16 +39,14 @@ const MenuButton = () => {
   }, []);
 
   return (
-    <div ref={menuRef} className = "menu-button">
+    <div ref={menuRef} className="menu-button">
       <button onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isOpen}>
         <MenuIcon />
       </button>
       {isOpen && (
         <nav className={`slider-menu ${isOpen ? 'open' : ''}`}>
           <ul>
-            <li><a href="#link1"><svg class="bookmark" xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 20 20" fill="none">
-  <path d="M15.8334 17.5L10 14.1667L4.16669 17.5V4.16667C4.16669 3.72464 4.34228 3.30072 4.65484 2.98816C4.9674 2.67559 5.39133 2.5 5.83335 2.5H14.1667C14.6087 2.5 15.0326 2.67559 15.3452 2.98816C15.6578 3.30072 15.8334 3.72464 15.8334 4.16667V17.5Z" stroke="#3F87C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg> Saved</a></li>
+            <li><a href="#link1">Saved</a></li>
             <li><a href="#link2">My Account</a></li>
             <li><a href="#link3">Settings</a></li>
           </ul>
@@ -56,57 +56,71 @@ const MenuButton = () => {
   );
 };
 
-//export default MenuButton;
-function App() {  
-  return (
-    <div>
-      <h1>
-      Find
-        <font color="#F38F24">My</font>
-        Illini
-    </h1>
-      <MenuButton />
-      <DropdownMenu />
-      <div className="floorPlans">
-        <img src={lowerLevel} className="floorImg"/>
-        <img src={floor1} className="floorImg"/>
-        <img src={floor2} className="floorImg"/>
-        <img src={floor3} className="floorImg"/>
-        <img src={floor4} className="floorImg"/>
-      </div>
-    </div>
-  );
-}
-  
-
-
-function DropdownMenu() {
-  // State to manage the visibility of the dropdown
+const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate(); // Hook to navigate between pages
 
-  // Function to toggle the dropdown
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleNavigation = (path) => {
+    setIsOpen(false); // Close dropdown
+    navigate(path); // Navigate to the selected route
+  };
+
   return (
     <div className="dropdown">
-      {/* Button to toggle the dropdown */}
       <button onClick={toggleDropdown} className="dropdown-toggle">
         {isOpen ? 'Select a floor of Grainger Library:' : 'Select a floor of Grainger Library:'}
       </button>
 
-      {/* Dropdown menu */}
       {isOpen && (
         <ul className="dropdown-menu">
-          <li>Basement</li>
-          <li>Floor 1</li>
-          <li>Floor 2</li>
-          <li>Floor 3</li>
-          <li>Floor 4</li>
+          <li onClick={() => handleNavigation('/basement')}>Basement</li>
+          <li onClick={() => handleNavigation('/floor1')}>Floor 1</li>
+          <li onClick={() => handleNavigation('/floor2')}>Floor 2</li>
+          <li onClick={() => handleNavigation('/floor3')}>Floor 3</li>
+          <li onClick={() => handleNavigation('/floor4')}>Floor 4</li>
         </ul>
       )}
     </div>
+  );
+};
+
+const FloorPlans = () => (
+  <div className="floorPlans">
+    <img src={lowerLevel} className="floorImg" alt="Lower Level" />
+    <img src={floor1} className="floorImg" alt="Floor 1" />
+    <img src={floor2} className="floorImg" alt="Floor 2" />
+    <img src={floor3} className="floorImg" alt="Floor 3" />
+    <img src={floor4} className="floorImg" alt="Floor 4" />
+  </div>
+);
+
+const Floor = ({ floorName }) => <h1>Welcome to {floorName}!</h1>;
+
+function App() {
+  return (
+    <Router>
+      <div>
+        <Link to="/" className="logo">
+          <h1>
+            Find<font color="#F38F24">My</font>Illini
+          </h1>
+        </Link>
+        <MenuButton />
+        <DropdownMenu />
+        <Routes>
+          <Route path="/" element={<FloorPlans />} />
+          <Route path="/basement" element={<Floor floorName="the Basement" />} />
+          <Route path="/floor1" element={<Floor floorName="Floor 1" />} />
+          <Route path="/floor2" element={<Floor floorName="Floor 2" />} />
+          <Route path="/floor3" element={<Floor floorName="Floor 3" />} />
+          <Route path="/floor4" element={<Floor floorName="Floor 4" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
