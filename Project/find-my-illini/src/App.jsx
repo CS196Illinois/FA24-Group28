@@ -64,9 +64,12 @@ function App() {
       Find
         <font color="#F38F24">My</font>
         Illini
-    </h1>
+      </h1>
       <MenuButton />
-      <DropdownMenu />
+      <div className="home-search">
+        <SearchBar />
+        <DropdownMenu />
+      </div>
       <div className="floorPlans">
         <img src={lowerLevel} className="floorImg"/>
         <img src={floor1} className="floorImg"/>
@@ -78,7 +81,26 @@ function App() {
   );
 }
   
+function SearchBar({ data, onSearch }) {
+  const [searchTerm, setSearchTerm] = useState('');
 
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+    onSearch(event.target.value); // Call the onSearch function with the updated search term
+  };
+
+  return (
+    <div>
+      <input
+        className="search-bar"
+        type="text"
+        placeholder="Search for a location here..."
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
+    </div>
+  );
+}
 
 function DropdownMenu() {
   // State to manage the visibility of the dropdown
