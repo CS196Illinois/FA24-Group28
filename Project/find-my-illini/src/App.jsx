@@ -121,7 +121,7 @@ function DropdownMenu() {
       {/* Dropdown menu */}
       {isOpen && (
         <ul className="dropdown-menu">
-          <li>Basement</li>
+          <li>Lower Level</li>
           <li>Floor 1</li>
           <li>Floor 2</li>
           <li>Floor 3</li>
