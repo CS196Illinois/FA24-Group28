@@ -31,6 +31,8 @@ const MenuButton = () => {
     }
   };
 
+  {isOpen && <div className="backdrop" onClick={toggleMenu}></div>}
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
