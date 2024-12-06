@@ -100,8 +100,20 @@ const FloorPlans = () => (
   </div>
 );
 
-const Floor = ({ floorName }) => <h1>Welcome to {floorName}!</h1>;
+const floorImages = {
+  basement: lowerLevel,
+  floor1: floor1,
+  floor2: floor2,
+  floor3: floor3,
+  floor4: floor4,
+};
 
+const Floor = ({ floorName, floorImage }) => (
+  <div>
+    <h1>Welcome to {floorName}!</h1>
+    <img src={floorImage} alt={`${floorName}`} className="floorImg" />
+  </div>
+);
 function App() {
   return (
     <Router>
@@ -115,11 +127,11 @@ function App() {
         <DropdownMenu />
         <Routes>
           <Route path="/" element={<FloorPlans />} />
-          <Route path="/basement" element={<Floor floorName="the Basement" />} />
-          <Route path="/floor1" element={<Floor floorName="Floor 1" />} />
-          <Route path="/floor2" element={<Floor floorName="Floor 2" />} />
-          <Route path="/floor3" element={<Floor floorName="Floor 3" />} />
-          <Route path="/floor4" element={<Floor floorName="Floor 4" />} />
+          <Route path="/basement" element={<Floor floorName="the Basement" floorImage={floorImages.basement} />} />
+          <Route path="/floor1" element={<Floor floorName="Floor 1" floorImage={floorImages.floor1} />} />
+          <Route path="/floor2" element={<Floor floorName="Floor 2" floorImage={floorImages.floor2} />} />
+          <Route path="/floor3" element={<Floor floorName="Floor 3" floorImage={floorImages.floor3} />} />
+          <Route path="/floor4" element={<Floor floorName="Floor 4" floorImage={floorImages.floor4} />} />
         </Routes>
       </div>
     </Router>
