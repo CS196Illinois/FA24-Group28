@@ -55,6 +55,15 @@
   
 }
 
+.largeFloorImg {
+  width: 90%;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
 button {
   display: flex;
 height: 40px;

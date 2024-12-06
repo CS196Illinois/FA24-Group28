@@ -111,7 +111,7 @@ const floorImages = {
 const Floor = ({ floorName, floorImage }) => (
   <div>
     <h1>Welcome to {floorName}!</h1>
-    <img src={floorImage} alt={`${floorName}`} className="floorImg" />
+    <img src={floorImage} alt={`${floorName}`} className="largeFloorImg" />
   </div>
 );
 function App() {
