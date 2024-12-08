@@ -6,6 +6,9 @@ import floor1 from './assets/floor 1.png';
 import floor2 from './assets/floor 2.png';
 import floor3 from './assets/floor 3.png';
 import floor4 from './assets/floor 4.png';
+import floorImage404 from './assets/404.png';
+import floorImage405 from './assets/405.png';
+import floorImage408 from './assets/408.png';
 
 import './App.css';
 
@@ -108,12 +111,58 @@ const floorImages = {
   floor4: floor4,
 };
 
-const Floor = ({ floorName, floorImage }) => (
-  <div>
-    <h1>Welcome to {floorName}!</h1>
-    <img src={floorImage} alt={`${floorName}`} className="largeFloorImg" />
-  </div>
-);
+const Floor = ({ floorName, floorImage, rooms }) => {
+  const [selectedRoom, setSelectedRoom] = useState('');
+
+  const roomImages = {
+    '404': floorImage404,
+    '405': floorImage405,
+    '408': floorImage408,
+  };
+
+  const handleRoomChange = (event) => {
+    setSelectedRoom(event.target.value);
+  };
+
+  return (
+    <div>
+      <h1>Welcome to {floorName}!</h1>
+      {rooms ? (
+        <div>
+          <label htmlFor="room-select">Select a room:</label>
+          <select id="room-select" value={selectedRoom} onChange={handleRoomChange}>
+            <option value="">--Choose a room--</option>
+            {Object.keys(rooms).map((room) => (
+              <option key={room} value={room}>
+                Room {room}
+              </option>
+            ))}
+          </select>
+          <div>
+            {/* Fallback to floorImage when no room is selected */}
+            <img
+              src={selectedRoom ? roomImages[selectedRoom] : floorImage}
+              alt={selectedRoom ? `Room ${selectedRoom}` : `${floorName}`}
+              className="largeFloorImg"
+            />
+          </div>
+        </div>
+      ) : (
+        <img src={floorImage} alt={`${floorName}`} className="largeFloorImg" />
+      )}
+    </div>
+  );
+};
+
+
+const floorRooms = {
+  floor4: {
+    '404': floorImage404,
+    '405': floorImage405,
+    '408': floorImage408,
+  },
+};
+
 function App() {
   return (
     <Router>
@@ -125,13 +174,17 @@ function App() {
         </Link>
         <MenuButton />
         <DropdownMenu />
+        
         <Routes>
           <Route path="/" element={<FloorPlans />} />
           <Route path="/basement" element={<Floor floorName="the Basement" floorImage={floorImages.basement} />} />
           <Route path="/floor1" element={<Floor floorName="Floor 1" floorImage={floorImages.floor1} />} />
           <Route path="/floor2" element={<Floor floorName="Floor 2" floorImage={floorImages.floor2} />} />
           <Route path="/floor3" element={<Floor floorName="Floor 3" floorImage={floorImages.floor3} />} />
-          <Route path="/floor4" element={<Floor floorName="Floor 4" floorImage={floorImages.floor4} />} />
+          <Route
+            path="/floor4"
+            element={<Floor floorName="Floor 4" floorImage={floorImages.floor4} rooms={floorRooms.floor4} />}
+          />
         </Routes>
       </div>
     </Router>
